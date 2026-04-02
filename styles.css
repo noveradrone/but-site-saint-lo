@@ -1803,6 +1803,16 @@ p {
     width: 100%;
   }
 
+  .hero-actions {
+    gap: 0.8rem;
+  }
+
+  .hero-actions .button {
+    min-height: 3.2rem;
+    padding: 0.78rem 1.1rem;
+    font-size: 0.96rem;
+  }
+
   .partners-carousel {
     padding-inline: 1.15rem;
   }
