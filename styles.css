@@ -14,7 +14,8 @@
   --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 14px;
-  --container: 1200px;
+  --container: 1280px;
+  --section-space: clamp(4.25rem, 7vw, 6.5rem);
   --header-offset: 0rem;
 }
 
@@ -24,6 +25,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -35,6 +37,7 @@ body {
     radial-gradient(circle at top right, rgba(31, 111, 235, 0.16), transparent 32%),
     linear-gradient(180deg, #f7fcfa 0%, #eef7f5 100%);
   color: var(--text);
+  overflow-x: hidden;
 }
 
 a {
@@ -104,7 +107,7 @@ textarea {
 }
 
 .section {
-  padding: 5.5rem 0;
+  padding: var(--section-space) 0;
 }
 
 .section-light {
@@ -223,7 +226,7 @@ textarea {
   height: 2px;
   margin-left: auto;
   margin-right: auto;
-  background: #fff;
+  background: var(--text);
   border-radius: 999px;
 }
 
@@ -264,7 +267,7 @@ textarea {
   padding: 0.8rem 1rem;
   border-radius: 1rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text);
   transition: background-color 180ms ease, color 180ms ease;
 }
 
@@ -288,8 +291,8 @@ textarea {
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(23, 178, 106, 0.08);
+  color: var(--text);
 }
 
 .site-header.is-on-light .site-nav a:hover,
@@ -308,10 +311,11 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100svh;
+  min-height: 100vh;
   margin-top: 0;
-  padding-top: 7.5rem;
-  padding-bottom: 2rem;
+  padding-top: clamp(7rem, 12vw, 8.5rem);
+  padding-bottom: clamp(1.75rem, 4vw, 3rem);
   background: url("./hero-bg.PNG") center center / cover no-repeat;
   overflow: hidden;
 }
@@ -364,7 +368,7 @@ textarea {
   align-items: center;
   width: 100%;
   min-height: inherit;
-  gap: 2.5rem;
+  gap: clamp(1.75rem, 4vw, 2.8rem);
 }
 
 .eyebrow {
@@ -404,6 +408,7 @@ h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 h3 {
@@ -447,6 +452,7 @@ p {
   font-weight: 800;
   transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
   cursor: pointer;
+  text-align: center;
 }
 
 .button:hover,
@@ -477,7 +483,7 @@ p {
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 1.55rem;
+  gap: clamp(1.1rem, 2.8vw, 1.75rem);
   width: min(100%, 86rem);
   margin: 0 auto;
   text-align: center;
@@ -648,7 +654,7 @@ p {
   display: grid;
   justify-items: center;
   gap: 0.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .icon-chip {
@@ -966,7 +972,7 @@ p {
 
 .testimonial-slider {
   position: relative;
-  min-height: 17rem;
+  min-height: clamp(18rem, 30vw, 21rem);
 }
 
 .testimonial-card {
@@ -1068,7 +1074,7 @@ p {
 
 .gallery-visual {
   position: relative;
-  min-height: 14rem;
+  min-height: clamp(15rem, 34vw, 18rem);
   border-radius: 1.4rem;
   overflow: hidden;
 }
@@ -1323,7 +1329,7 @@ p {
 
 .map-frame iframe {
   width: 100%;
-  min-height: 24rem;
+  min-height: clamp(18rem, 42vw, 26rem);
   border: 0;
   border-radius: var(--radius-md);
 }
@@ -1401,7 +1407,7 @@ p {
   align-content: start;
   justify-items: center;
   gap: 1rem;
-  min-height: 16rem;
+  min-height: 15.5rem;
   padding: 1.4rem 1.2rem;
   border: 1px solid rgba(17, 49, 58, 0.08);
   border-radius: var(--radius-md);
@@ -1423,7 +1429,7 @@ p {
   display: grid;
   place-items: center;
   width: 100%;
-  min-height: 8.6rem;
+  min-height: 8rem;
   padding: 1rem;
   border: 1px solid rgba(17, 49, 58, 0.08);
   border-radius: 1.25rem;
@@ -1484,6 +1490,10 @@ p {
 }
 
 @media (min-width: 700px) {
+  .container {
+    width: min(calc(100% - 2.5rem), var(--container));
+  }
+
   .formation-grid,
   .learn-grid,
   .footer-grid {
@@ -1503,6 +1513,24 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .contact-form-card form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 0.85rem;
+  }
+
+  .contact-form-card .field-group:nth-child(1),
+  .contact-form-card .field-group:nth-child(2) {
+    grid-column: span 1;
+  }
+
+  .contact-form-card .field-group:nth-child(3),
+  .contact-form-card .field-span-4,
+  .contact-form-card .button,
+  .contact-form-card .form-success {
+    grid-column: 1 / -1;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1513,6 +1541,34 @@ p {
 
   .partners-track {
     grid-auto-columns: calc((100% - 0.75rem) / 2);
+  }
+}
+
+@media (min-width: 820px) {
+  .container {
+    width: min(calc(100% - 3rem), var(--container));
+  }
+
+  .hero-copy {
+    width: min(100%, 72rem);
+  }
+
+  .formation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dual-feature {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .testimonials {
+    max-width: 58rem;
+    margin-inline: auto;
+  }
+
+  .partners-showcase {
+    max-width: 74rem;
   }
 }
 
@@ -1534,6 +1590,10 @@ p {
     opacity: 1;
     transform: none;
     pointer-events: auto;
+  }
+
+  .site-nav a {
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .header-inner {
@@ -1579,12 +1639,12 @@ p {
   }
 
   .hero {
-    padding-top: 7.8rem;
-    padding-bottom: 2rem;
+    padding-top: clamp(7.5rem, 10vw, 8.25rem);
+    padding-bottom: 2.5rem;
   }
 
   .hero-copy {
-    width: min(100%, 86rem);
+    width: min(100%, 82rem);
   }
 
   .learn-cards {
@@ -1663,6 +1723,31 @@ p {
   }
 }
 
+@media (min-width: 1400px) {
+  :root {
+    --container: 1380px;
+  }
+
+  .container {
+    width: min(calc(100% - 4rem), var(--container));
+  }
+
+  .hero-copy {
+    width: min(100%, 90rem);
+  }
+
+  .partners-showcase {
+    max-width: 78rem;
+  }
+
+  .contact-heading,
+  .opportunities-heading,
+  .faq-heading,
+  .learn-heading {
+    max-width: 68rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1701,14 +1786,13 @@ p {
   }
 
   .section {
-    padding: 4.6rem 0;
+    padding: 4.4rem 0;
   }
 
   .hero {
-    height: 100vh;
-    min-height: 100vh;
-    padding-top: 6.8rem;
-    padding-bottom: 1.5rem;
+    min-height: 100svh;
+    padding-top: 6.9rem;
+    padding-bottom: 1.75rem;
   }
 
   .hero-actions {
@@ -1738,5 +1822,13 @@ p {
   .contact-form-card,
   .map-card {
     padding: 1.3rem;
+  }
+
+  .testimonial-slider {
+    min-height: 22rem;
+  }
+
+  .site-nav a {
+    padding: 0.95rem 1rem;
   }
 }
